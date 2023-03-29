@@ -4,7 +4,7 @@ const { User } = require('../database/models/index');
 
 const login = async () => {
   try {
-    const users = await User.findByPk(1);
+    const users = await User.findAll();
     return users;
   } catch (error) {
     console.log(error);

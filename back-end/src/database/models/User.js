@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    'User',
+    "User",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
+        unique: true, 
         allowNull: false,
       },
       email: {
@@ -19,19 +20,30 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       role: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
-      }
-    }, {
+      },
+    },
+    {
       timestamps: false,
-      tableName: 'users'
+      tableName: "users",
     }
-  )
-  
+  );
+
+  User.associate = ({ Sale }) => {
+    User.hasMany(Sale, {
+      as: "seller_id",
+      foreignKey: "sellerId",
+    });
+
+    User.hasMany(Sale, {
+      as: "user_id",
+      foreignKey: "userId",
+    });
+  };
+
   return User;
-}
+};
