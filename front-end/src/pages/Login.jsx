@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import api from '../api';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [isUserNotFound, setIsUserNotFound] = useState(false);
+  const { push } = useHistory();
 
   useEffect(() => {
     const regex = /\S+[@]\w+[.]\w+/gi;
@@ -15,8 +17,8 @@ function Login() {
 
   const handleClick = async () => {
     try {
-      const response =  await api.post('/login', { email, password });
-      console.log(response);
+      await api.post('/login', { email, password });
+      push('/customer/products');
     } catch(e) {
       if(e.response.status === 404) {
         setIsUserNotFound(true);
