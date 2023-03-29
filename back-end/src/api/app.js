@@ -5,8 +5,11 @@ const router = require('../routes/index.routes');
 const app = express();
 
 app.use(express.json());
-app.use(router);
 app.use(cors());
+app.use(router);
+app.use((err, _req, res, _next) => {
+  res.status(500).json(err.message);
+});
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

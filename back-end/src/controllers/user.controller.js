@@ -1,8 +1,12 @@
 const service = require('../services/user.service');
 
-const login = async (_req, res) => {
-  const users = await service.login();
-  res.status(200).json(users);
+const login = async (req, res, next) => {
+  try {
+    const { status, message } = await service.login(req.body);
+    res.status(status).json(message);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const next = () => {};
