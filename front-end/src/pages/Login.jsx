@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import api from '../api';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
@@ -42,7 +41,7 @@ function Login() {
       <h1>nome app</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Login</label>
-        <input 
+        <input
           type="email"
           data-testid="common_login__input-email"
           value={email}
@@ -57,12 +56,20 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={handleClick} disabled={isBtnDisabled} data-testid="common_login__button-login">LOGIN</button>
-        <button data-testid="common_login__button-register">Ainda não tenho conta</button>
+        <button
+          onClick={handleClick}
+          disabled={isBtnDisabled}
+          data-testid="common_login__button-login"
+        >
+          LOGIN
+        </button>
+        <button data-testid="common_login__button-register">
+          Ainda não tenho conta
+        </button>
       </form>
       <p
         data-testid="common_login__element-invalid-email"
-        style={{ display: isUserNotFound ? 'block': 'none' }}
+        style={{ display: isUserNotFound ? "block" : "none" }}
       >
         Mensagem de erro
       </p>
