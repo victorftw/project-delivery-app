@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 app.use((err, _req, res, _next) => {
+  console.log(err);
   res.status(500).json(err);
 });
 
