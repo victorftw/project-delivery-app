@@ -2,6 +2,7 @@ version: '3.9'
 services:
   frontend:
     build: ./front-end
+    restart: always
     ports:
       - 3000:3000
     platform: linux/x86_64
