@@ -30,12 +30,14 @@ function Register() {
       body: JSON.stringify({ email, password, name }),
     });
     const numberError = 409;
-    console.log(response);
+    const user = await response.json();
     if (response.status === numberError) {
       setisUserNotValid(true);
       return;
     }
-    push('/customer/products');
+    if (user.role === 'customer') {
+      push('/customer/products');
+    }
   };
 
   return (
