@@ -1,11 +1,15 @@
 const { User } = require('../database/models/index');
+const { resp, respE } = require('../utils/resp');
 
-// User.findAll().then((res) => console.log(res)).catch((e) => console.log(e));
-
-const login = async () => {
+const login = async ({ email, password }) => {
   try {
-    const users = await User.findByPk(1);
-    return users;
+    console.log(email, password);
+    const users = await User.findAll();
+    const userExists = users.some(
+      (e) => e.email === email && e.password === password,
+    );
+    if (!userExists) return respE(404, 'User not found');
+    return resp(200, { token: 'dsfikojpofdsjofdspkfds' });
   } catch (error) {
     console.log(error);
   }

@@ -5,6 +5,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
+  const [isUserNotFound, setIsUserNotFound] = useState(false);
 
   useEffect(() => {
     const regex = /\S+[@]\w+[.]\w+/gi;
@@ -13,14 +14,25 @@ function Login() {
   }, [email, password])
 
   const handleClick = async () => {
-    const response = await api.post('/login', { email, password });
+    try {
+      const response =  await api.post('/login', { email, password });
+      console.log(response);
+    } catch(e) {
+      if(e.response.status === 404) {
+        setIsUserNotFound(true);
+      }
+    }
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  } 
 
   return (
     <div>
       <img src="" alt="" />
       <h1>nome app</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Login</label>
         <input 
           type="email"
@@ -37,10 +49,15 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button disabled={isBtnDisabled} onClick={handleClick} data-testid="common_login__button-login">LOGIN</button>
+        <button onClick={handleClick} disabled={isBtnDisabled} data-testid="common_login__button-login">LOGIN</button>
         <button data-testid="common_login__button-register">Ainda não tenho conta</button>
       </form>
-      <p data-testid="common_login__element-invalid-email">Mensagem de erro</p>
+      <p
+        data-testid="common_login__element-invalid-email"
+        style={{ display: isUserNotFound ? 'block': 'none' }}
+      >
+        Mensagem de erro
+      </p>
     </div>
   );
 }

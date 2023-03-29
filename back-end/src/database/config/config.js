@@ -24,7 +24,7 @@ const options = {
   logging: false,
 };
 
-console.log(options)
+console.log(options);
 
 module.exports = {
   development: {
