@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from '../api';
+// import api from '../api';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
@@ -16,14 +16,20 @@ function Login() {
   }, [email, password])
 
   const handleClick = async () => {
-    try {
-      await api.post('/login', { email, password });
+      const response = await fetch('http://localhost:3001/login', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })}
+        );
+      const result = await response.json();
+      if (result.message === 'User not found') {
+        setIsUserNotFound(true)
+        return;
+      } 
       push('/customer/products');
-    } catch(e) {
-      if(e.response.status === 404) {
-        setIsUserNotFound(true);
-      }
-    }
   }
 
   const handleSubmit = async (e) => {
