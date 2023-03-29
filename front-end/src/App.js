@@ -8,10 +8,10 @@ import Register from './pages/Register';
 function App() {
   return (
     <Switch>
-      <Route exact path="/customer/products" component={ CustomerProducts } />
       <Route exact path="/login" component={ Login } />
-      <Route exact path="/register" component={ Register } />
       <Redirect exact from="/" to="/login" />
+      <Route exact path="/register" component={ Register } />
+      <Route exact path="/customer/products" component={ CustomerProducts } />
     </Switch>
   );
 }

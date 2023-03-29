@@ -9,6 +9,13 @@ const login = async (req, res, next) => {
   }
 };
 
-const next = () => {};
+const create = async (req, res, next) => {
+  try {
+    const { status, message } = await service.create(req.body);
+    res.status(status).json(message);
+  } catch (error) {
+    next(error);
+  }
+};
 
-module.exports = { login, next };
+module.exports = { login, create };
