@@ -15,9 +15,12 @@ const create = async (body) => {
   return resp(201, createdSale);
 };
 
-const next = () => {};
+const getSales = async (id) => {
+  const sales = await Sale.findAll({ where: { userId: id } });
+  return resp(200, sales);
+};
 
 module.exports = {
   create,
-  next,
+  getSales,
 };
