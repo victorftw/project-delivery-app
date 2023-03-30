@@ -52,3 +52,7 @@
     transform: rotate(-10deg);
   }
 }
+
+th {
+  text-align: center;
+}
