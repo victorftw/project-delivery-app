@@ -8,7 +8,8 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 app.use((err, _req, res, _next) => {
-  res.status(500).json(err.message);
+  console.log(err);
+  res.status(500).json(err);
 });
 
 app.get('/coffee', (_req, res) => res.status(418).end());

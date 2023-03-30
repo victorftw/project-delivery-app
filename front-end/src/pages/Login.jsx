@@ -20,7 +20,8 @@ function Login() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }) });
+      body: JSON.stringify({ email, password }),
+    });
     const result = await response.json();
     if (result.message === 'User not found') {
       setIsUserNotFound(true);
@@ -64,7 +65,11 @@ function Login() {
         >
           LOGIN
         </button>
-        <button type="button" data-testid="common_login__button-register">
+        <button
+          onClick={ () => push('/register') }
+          type="button"
+          data-testid="common_login__button-register"
+        >
           Ainda não tenho conta
         </button>
       </form>

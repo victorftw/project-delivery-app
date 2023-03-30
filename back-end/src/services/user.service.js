@@ -7,9 +7,7 @@ const login = async ({ email, password }) => {
   try {
     const hashPass = md5(password);
     const users = await User.findAll();
-    const user = users.find(
-      (e) => e.email === email && e.password === hashPass,
-    );
+    const user = users.find((e) => e.email === email && e.password === hashPass);
     if (!user) return respE(404, 'User not found');
     const token = gnToken({
       id: user.id,
@@ -23,6 +21,18 @@ const login = async ({ email, password }) => {
   }
 };
 
-const next = () => {};
+const create = async (user) => {
+  const users = await User.findAll();
+  const foundUserEmail = users.find((element) => element.email === user.email);
+  const foundUserName = users.find((element) => element.name === user.name);
+  if (foundUserEmail || foundUserName) {
+    return respE(409, 'User already exists');
+  }
+  const hashPassword = md5(user.password);
+  const createdUser = await User.create(
+    { ...user, password: hashPassword },
+  );
+  return resp(201, createdUser);
+};
 
-module.exports = { login, next };
+module.exports = { login, create };
