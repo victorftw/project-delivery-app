@@ -96,7 +96,7 @@ describe('Tela de Login', () => {
     userEvent.type(inputPassword, passwordValid);
     userEvent.click(btnLogin);
 
-    expect(history.location.pathname).toBe('/customer/productsq');
+    expect(history.location.pathname).toBe('/customer/products');
   });
 
 });
