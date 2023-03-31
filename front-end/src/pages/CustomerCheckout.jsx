@@ -52,8 +52,6 @@ function CustomerCheckout() {
       deliveryNumber: number,
     };
 
-    console.log(sale);
-
     const response = await fetch('http://localhost:3001/sale', {
       method: 'POST',
       mode: 'cors',

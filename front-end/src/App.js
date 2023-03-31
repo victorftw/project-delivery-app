@@ -13,10 +13,10 @@ function App() {
   return (
     <Provider>
       <Switch>
+        <Route exact path="/customer/orders" component={ CustomerOrders } />
         <Route exact path="/customer/orders/:id" component={ CustomerOrdersDetails } />
         <Route exact path="/customer/checkout" component={ CustomerCheckout } />
         <Route exact path="/customer/products" component={ CustomerProducts } />
-        <Route exact path="/customer/orders" component={ CustomerOrders } />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/login" component={ Login } />
         <Redirect exact from="/" to="/login" />

@@ -29,6 +29,25 @@ function Register() {
       },
       body: JSON.stringify({ email, password, name }),
     });
+
+    const responseLogin = await fetch('http://localhost:3001/login', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const { token } = await responseLogin.json();
+
+    localStorage.setItem('user', JSON.stringify({
+      name,
+      email,
+      role: 'customer',
+      token,
+    }));
+
     const numberError = 409;
     const user = await response.json();
     if (response.status === numberError) {

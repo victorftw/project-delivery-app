@@ -6,6 +6,6 @@ const verify = require('../middlewares/jwt.verify.token');
 const salesRoutes = Router();
 
 salesRoutes.post('/sale', verify, control.create);
-salesRoutes.get('/sale/:id', verify, control.getSales);
+salesRoutes.get('/sale/:id', control.getSales);
 
 module.exports = salesRoutes;

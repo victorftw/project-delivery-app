@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 function Login() {
+  const { state: user } = useLocalStorage('user', {});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [isUserNotFound, setIsUserNotFound] = useState(false);
   const { push } = useHistory();
   useEffect(() => {
+    if (user.email) {
+      push('/customer/products');
+    }
     const seis = 6;
     const regex = /\S+[@]\w+[.]\w+/gi;
     if (regex.test(email) && password.length >= seis) setIsBtnDisabled(false);
     else setIsBtnDisabled(true);
-  }, [email, password]);
+  }, [email, password, user.email, push]);
   const handleClick = async () => {
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
