@@ -47,10 +47,12 @@ function CustomerCheckout() {
     const sale = {
       userId: findUser ? findUser.id : 1,
       sellerId: seller,
-      totalPrice: total,
+      totalPrice: Number(total).toFixed(2),
       deliveryAddress: address,
       deliveryNumber: number,
     };
+
+    console.log(sale);
 
     const response = await fetch('http://localhost:3001/sale', {
       method: 'POST',
