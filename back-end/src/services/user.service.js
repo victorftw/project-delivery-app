@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const { User } = require('../database/models/index');
+const { User, Product } = require('../database/models/index');
 const { resp, respE } = require('../utils/resp');
 const gnToken = require('../jwt/sing');
 
@@ -15,7 +15,8 @@ const login = async ({ email, password }) => {
       email: user.email,
       role: user.role,
     });
-    return resp(200, { token });
+    const { name, role } = user;
+    return resp(200, { token, name, email, role });
   } catch (error) {
     console.log(error);
   }
@@ -35,4 +36,9 @@ const create = async (user) => {
   return resp(201, createdUser);
 };
 
-module.exports = { login, create };
+const getProducts = async () => {
+    const users = await Product.findAll();
+    return resp(201, users);
+};
+
+module.exports = { login, create, getProducts };

@@ -27,6 +27,12 @@ function Login() {
       setIsUserNotFound(true);
       return;
     }
+    localStorage.setItem('user', JSON.stringify({
+      name: result.name,
+      email: result.email,
+      role: result.role,
+      token: result.token,
+    }));
     push('/customer/products');
   };
   const handleSubmit = async (e) => {
