@@ -41,4 +41,9 @@ const getProducts = async () => {
     return resp(201, users);
 };
 
-module.exports = { login, create, getProducts };
+const get = async () => {
+  const users = await User.findAll();
+  return resp(200, users);
+};
+
+module.exports = { login, create, getProducts, get };

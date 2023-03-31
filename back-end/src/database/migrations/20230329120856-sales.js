@@ -48,8 +48,8 @@ module.exports = {
       },
       saleDate: {
         type: Sequelize.DATE, 
-        allowNull: false,
-        field: 'sale_date'
+        field: 'sale_date',
+        defaultValue: new Date()
       },
       status: {
       type: Sequelize.STRING(50),

@@ -5,11 +5,15 @@ import Login from './pages/Login';
 import CustomerProducts from './pages/CustomerProducts';
 import Register from './pages/Register';
 import Provider from './contextAPI/provider';
+import CustomerCheckout from './pages/CustomerCheckout';
+import CustomerOrdersDetails from './pages/CustomerOrdersDetails';
 
 function App() {
   return (
     <Provider>
       <Switch>
+        <Route exact path="/customer/orders/:id" component={ CustomerOrdersDetails } />
+        <Route exact path="/customer/checkout" component={ CustomerCheckout } />
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/login" component={ Login } />
