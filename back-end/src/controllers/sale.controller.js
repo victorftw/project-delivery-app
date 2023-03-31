@@ -18,7 +18,29 @@ const getSales = async (req, res, next) => {
   }
 };
 
+const getById = async (req, res, next) => {
+  const { idVenda } = req.params;
+  try {
+    const { status, message } = await service.salesById(idVenda);
+    res.status(status).json(message);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateStatusSales = async (req, res, next) => {
+  const { idVenda } = req.params;
+  try {
+    const { status } = await service.updateStatusSales(idVenda);
+    res.status(status).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  getById,
   getSales,
+  updateStatusSales,
 };

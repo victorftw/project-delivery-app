@@ -8,6 +8,7 @@ function Login() {
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [isUserNotFound, setIsUserNotFound] = useState(false);
   const { push } = useHistory();
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user?.email) {
@@ -27,6 +28,7 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     });
+
     const result = await response.json();
     if (result.message === 'User not found') {
       setIsUserNotFound(true);
@@ -40,9 +42,11 @@ function Login() {
     }));
     push('/customer/products');
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   };
+
   return (
     <div>
       <img src="" alt="" />

@@ -1,5 +1,5 @@
-const { Sale, SaleProduct } = require('../database/models');
-const { resp } = require('../utils/resp');
+const { Sale, User, Product, SaleProduct } = require('../database/models');
+const { resp, respE } = require('../utils/resp');
 
 const create = async (body) => {
   const [sale, products] = body;
@@ -20,7 +20,32 @@ const getSales = async (id) => {
   return resp(200, sales);
 };
 
+const salesById = async (id) => {
+  const sale = await Sale.findOne({
+      where: { id },
+      include: [{
+          model: User,
+          as: 'seller',
+          attributes: ['name'],
+      }, {
+          model: Product, as: 'products',
+      }],
+  });
+  return resp(200, sale);
+};
+
+const updateStatusSales = async (id) => {
+  try {
+      const updatedSale = await Sale.update({ status: 'ENTREGUE' }, { where: { id } });
+      return resp(200, updatedSale);
+  } catch (error) {
+      return respE(400, error);
+  }
+};
+
 module.exports = {
   create,
   getSales,
+  salesById,
+  updateStatusSales,
 };
