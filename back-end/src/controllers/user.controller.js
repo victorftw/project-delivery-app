@@ -18,6 +18,15 @@ const create = async (req, res, next) => {
   }
 };
 
+const getProducts = async (req, res, next) => {
+  try {
+    const { status, message } = await service.getProducts(req.body);
+    res.status(status).json(message);
+  } catch (error) {
+    next(error.message);
+  }
+};
+
 const get = async (_req, res, next) => {
   try {
     const { status, message } = await service.get();
@@ -27,4 +36,4 @@ const get = async (_req, res, next) => {
   }
 };
 
-module.exports = { login, create, get };
+module.exports = { login, create, getProducts, get };

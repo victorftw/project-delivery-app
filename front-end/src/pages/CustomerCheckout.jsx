@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../App.css';
+import Context from '../contextAPI/context';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const BASE = 'customer_checkout__element-order-table-';
 
 function CustomerCheckout() {
-  const { state: user } = useLocalStorage('user', {});
-  const { state: cart, setState: setCart } = useLocalStorage('cart', []);
+  const { state: user } = useLocalStorage('user', []);
+  const { cartProducts, setCartProducts } = useContext(Context);
   const [users, setUsers] = useState([]);
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState(0);
   const [total, setTotal] = useState(
-    cart.reduce((a, c) => a + +c.price * +c.quantity, 0).toFixed(2),
+    cartProducts.reduce((a, c) => a + +c.price * +c.quantity, 0).toFixed(2),
   );
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
@@ -34,29 +35,33 @@ function CustomerCheckout() {
   }, []);
 
   const remove = (index) => {
-    const newCart = cart.filter((_e, i) => i !== index);
-    setCart(newCart);
+    const newCart = cartProducts.filter((_e, i) => i !== index);
+    setCartProducts(newCart);
     setTotal(
       newCart.reduce((a, c) => a + +c.price * +c.quantity, 0).toFixed(2),
     );
   };
 
   const createSale = async () => {
+    const findUser = users.find((e) => e.email === user.email);
     const sale = {
-      userId: users.find((e) => e.email === user.email).id,
+      userId: findUser ? findUser.id : 1,
       sellerId: seller,
-      totalPrice: total,
+      totalPrice: Number(total).toFixed(2),
       deliveryAddress: address,
       deliveryNumber: number,
     };
+
+    console.log(sale);
 
     const response = await fetch('http://localhost:3001/sale', {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-type': 'application/json',
+        Authorization: user.token,
       },
-      body: JSON.stringify([sale, cart]),
+      body: JSON.stringify([sale, cartProducts]),
     });
 
     const { id } = await response.json();
@@ -68,41 +73,45 @@ function CustomerCheckout() {
     <div>
       <h1>Finalizar pedido</h1>
       <table>
-        <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantitade</th>
-          <th>Valor Unitário</th>
-          <th>Sub total</th>
-          <th>Remover item</th>
-        </tr>
-        {cart.map((e, i) => (
-          <tr key={ e.id }>
-            <td data-testid={ `${BASE}item-number-${i}` }>
-              {e.id}
-            </td>
-            <td data-testid={ `${BASE}name-${i}` }>
-              {e.name}
-            </td>
-            <td data-testid={ `${BASE}quantity-${i}` }>
-              {e.quantity}
-            </td>
-            <td data-testid={ `${BASE}unit-price-${i}` }>
-              {e.price}
-            </td>
-            <td data-testid={ `${BASE}sub-total- ${i}` }>
-              {+e.quantity * +e.price}
-            </td>
-            <td data-testid={ `${BASE}remove-${i}` }>
-              <button onClick={ () => remove(i) } type="button">
-                Remove item
-              </button>
-            </td>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantitade</th>
+            <th>Valor Unitário</th>
+            <th>Sub total</th>
+            <th>Remover item</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {cartProducts.map((e, i) => (
+            <tr key={ e.id }>
+              <td data-testid={ `${BASE}item-number-${i}` }>
+                {i + 1}
+              </td>
+              <td data-testid={ `${BASE}name-${i}` }>
+                {e.name}
+              </td>
+              <td data-testid={ `${BASE}quantity-${i}` }>
+                {e.quantity}
+              </td>
+              <td data-testid={ `${BASE}unit-price-${i}` }>
+                {String(e.price).replace('.', ',')}
+              </td>
+              <td data-testid={ `${BASE}sub-total-${i}` }>
+                {String(e.totalValue).replace('.', ',')}
+              </td>
+              <td data-testid={ `${BASE}remove-${i}` }>
+                <button onClick={ () => remove(i) } type="button">
+                  Remove item
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <h2 data-testid="customer_checkout__element-order-total-price">
-        {`Total: R$ ${total}`}
+        {`Total: R$ ${String(total).replace('.', ',')}`}
       </h2>
 
       <div id="delivery-details">
@@ -111,7 +120,7 @@ function CustomerCheckout() {
         <label htmlFor="seller">
           Pessoa vendedora responsável
           <select
-            data-testid="customer_checkout__select_seller"
+            data-testid="customer_checkout__select-seller"
             aria-label="seller"
             value={ seller }
             onChange={ (e) => setSeller(+e.target.value) }

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         field: "seller_id",
       },
       totalPrice: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10 ,2),
         allowNull: false,
         field: "total_price",
       },
@@ -34,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       saleDate: {
         type: DataTypes.DATE,
-        allowNull: false,
         field: "sale_date",
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       },

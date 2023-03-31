@@ -32,7 +32,7 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       totalPrice:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false,
         field: 'total_price'
       },
@@ -48,9 +48,8 @@ module.exports = {
       },
       saleDate: {
         type: Sequelize.DATE, 
-        allowNull: false,
         field: 'sale_date',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       status: {
       type: Sequelize.STRING(50),
