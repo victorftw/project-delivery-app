@@ -27,4 +27,13 @@ const getProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { login, create, getProducts };
+const get = async (_req, res, next) => {
+  try {
+    const { status, message } = await service.get();
+    res.status(status).json(message);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { login, create, getProducts, get };
