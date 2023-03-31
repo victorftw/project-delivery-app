@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 // descomentar a linha abaixo se quiser rodar no windows---
-// const environment = process.env.NODE_ENV || 'dev';
-const environment = process.env.NODE_ENV || 'test';
+const environment = process.env.NODE_ENV || 'dev';
+// const environment = process.env.NODE_ENV || 'test';
 
 const suffix = {
   prod: '',

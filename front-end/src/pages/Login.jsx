@@ -7,12 +7,14 @@ function Login() {
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [isUserNotFound, setIsUserNotFound] = useState(false);
   const { push } = useHistory();
+
   useEffect(() => {
     const seis = 6;
     const regex = /\S+[@]\w+[.]\w+/gi;
     if (regex.test(email) && password.length >= seis) setIsBtnDisabled(false);
     else setIsBtnDisabled(true);
   }, [email, password]);
+
   const handleClick = async () => {
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -22,6 +24,7 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     });
+
     const result = await response.json();
     if (result.message === 'User not found') {
       setIsUserNotFound(true);
@@ -35,9 +38,11 @@ function Login() {
     }));
     push('/customer/products');
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   };
+
   return (
     <div>
       <img src="" alt="" />
