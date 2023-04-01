@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import useLocalStorage from '../hooks/useLocalStorage';
 import Navbar from './components/Navbar';
 
 function CustomerOrders() {
-  const { state: user } = useLocalStorage('user', {});
+  const user = useState(() => localStorage.getItem('user') || {});
   const [sales, setSales] = useState();
   const { push } = useHistory();
 

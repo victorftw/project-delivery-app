@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 export default function CustomerOrderDetails() {
   const [status, setStatus] = useState('');
@@ -62,6 +63,7 @@ export default function CustomerOrderDetails() {
 
   return (
     <div>
+      <Navbar />
       <h2>Detalhe do Pedido</h2>
       <p data-testid="customer_order_details__element-order-details-label-order-id">
         {`PEDIDO ${objSale.id};`}

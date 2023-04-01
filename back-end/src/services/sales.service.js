@@ -20,6 +20,11 @@ const getSales = async (id) => {
   return resp(200, sales);
 };
 
+const getSalesBySeller = async (id) => {
+  const sales = await Sale.findAll({ where: { sellerId: id } });
+  return resp(200, sales);
+};
+
 const salesById = async (id) => {
   const sale = await Sale.findOne({
       where: { id },
@@ -48,4 +53,5 @@ module.exports = {
   getSales,
   salesById,
   updateStatusSales,
+  getSalesBySeller,
 };

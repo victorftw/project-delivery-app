@@ -9,10 +9,15 @@ function Login() {
   const [isUserNotFound, setIsUserNotFound] = useState(false);
   const { push } = useHistory();
 
+  const redirect = (us) => {
+    if (us.role === 'customer') push('/customer/products');
+    if (us.role === 'seller') push('/seller/orders');
+  };
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user?.email) {
-      push('/customer/products');
+      redirect(user);
     }
     const seis = 6;
     const regex = /\S+[@]\w+[.]\w+/gi;
@@ -40,7 +45,9 @@ function Login() {
       role: result.role,
       token: result.token,
     }));
-    push('/customer/products');
+
+    if (result.role === 'seller') push('/seller/orders');
+    else push('/customer/products');
   };
 
   const handleSubmit = async (e) => {
