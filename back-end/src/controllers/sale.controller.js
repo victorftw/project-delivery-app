@@ -1,8 +1,17 @@
-const service = require('../services/sale.service');
+const service = require('../services/sales.service');
 
 const create = async (req, res, next) => {
   try {
     const { status, message } = await service.create(req.body);
+    res.status(status).json(message);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getSales = async (req, res, next) => {
+  try {
+    const { status, message } = await service.getSales(req.params.id);
     res.status(status).json(message);
   } catch (error) {
     next(error);
@@ -32,5 +41,6 @@ const updateStatusSales = async (req, res, next) => {
 module.exports = {
   create,
   getById,
+  getSales,
   updateStatusSales,
 };

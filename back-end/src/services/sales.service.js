@@ -15,6 +15,11 @@ const create = async (body) => {
   return resp(201, createdSale);
 };
 
+const getSales = async (id) => {
+  const sales = await Sale.findAll({ where: { userId: id } });
+  return resp(200, sales);
+};
+
 const salesById = async (id) => {
   const sale = await Sale.findOne({
       where: { id },
@@ -37,8 +42,10 @@ const updateStatusSales = async (id) => {
       return respE(400, error);
   }
 };
+
 module.exports = {
   create,
+  getSales,
   salesById,
   updateStatusSales,
 };

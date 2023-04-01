@@ -18,6 +18,7 @@ export default function Navbar() {
         <button
           data-testid="customer_products__element-navbar-link-orders"
           type="button"
+          onClick={ () => history.push('/customer/orders') }
         >
           Meus Pedidos
         </button>
