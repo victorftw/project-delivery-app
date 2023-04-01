@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 export default function CustomerOrderDetails() {
   const [status, setStatus] = useState('');
@@ -38,23 +39,23 @@ export default function CustomerOrderDetails() {
       },
     });
     const result = await responseFetch.json();
-    setStatus(result.status);
     setObjSale(await result);
     setArrayProducts(result.products);
     setSeller(result.seller.name);
     totalCompra(result.products);
     formatDate(result.saleDate);
+    setStatus(objSale.status);
   };
 
-  const updatedStatus = async () => {
-    await fetch(`http://localhost:3001/customer/orders/${id}`, {
+  const updatedStatus = async (newStatus) => {
+    await fetch(`http://localhost:3001/customer/orders/${newStatus}/${id}`, {
       method: 'PATCH',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    setStatus('ENTREGUE');
+    setStatus(newStatus);
   };
   useEffect(() => {
     startPage();
@@ -62,6 +63,7 @@ export default function CustomerOrderDetails() {
 
   return (
     <div>
+      <Navbar />
       <h2>Detalhe do Pedido</h2>
       <p data-testid="customer_order_details__element-order-details-label-order-id">
         {`PEDIDO ${objSale.id};`}
@@ -80,8 +82,8 @@ export default function CustomerOrderDetails() {
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        disabled
-        onClick={ updatedStatus }
+        disabled={ status !== 'Em Trânsito' }
+        onClick={ () => updatedStatus('Entregue') }
       >
         Marcar como Entregue
       </button>
