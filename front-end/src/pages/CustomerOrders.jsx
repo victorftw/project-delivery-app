@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 function CustomerOrders() {
-  const user = useState(() => localStorage.getItem('user') || {});
+  const [user] = useState(() => JSON.parse(localStorage.getItem('user')) || {});
   const [sales, setSales] = useState();
   const { push } = useHistory();
 

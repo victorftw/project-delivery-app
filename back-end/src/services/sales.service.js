@@ -39,13 +39,24 @@ const salesById = async (id) => {
   return resp(200, sale);
 };
 
-const updateStatusSales = async (id) => {
+const updateStatusSales = async (id, status) => {
   try {
-      const updatedSale = await Sale.update({ status: 'ENTREGUE' }, { where: { id } });
+      const updatedSale = await Sale.update({ status }, { where: { id } });
       return resp(200, updatedSale);
   } catch (error) {
       return respE(400, error);
   }
+};
+
+const getSaleDetails = async (id) => {
+  const sale = await Sale.findByPk(id);
+  let products = await SaleProduct.findAll({ where: { saleId: id } });
+  products = await Promise
+    .all(products.map(async (e) => {
+      const productEl = await Product.findByPk(e.productId);
+      return { ...productEl.toJSON(), quantity: e.quantity };
+    }));
+  return resp(200, [sale, products]);
 };
 
 module.exports = {
@@ -54,4 +65,5 @@ module.exports = {
   salesById,
   updateStatusSales,
   getSalesBySeller,
+  getSaleDetails,
 };

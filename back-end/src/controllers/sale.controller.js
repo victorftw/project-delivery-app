@@ -38,10 +38,20 @@ const getById = async (req, res, next) => {
 };
 
 const updateStatusSales = async (req, res, next) => {
-  const { idVenda } = req.params;
+  const { idVenda, status: newState } = req.params;
   try {
-    const { status } = await service.updateStatusSales(idVenda);
+    const { status } = await service.updateStatusSales(idVenda, newState);
     res.status(status).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getSaleDetails = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { status, message } = await service.getSaleDetails(id);
+    res.status(status).json(message);
   } catch (error) {
     next(error);
   }
@@ -53,4 +63,5 @@ module.exports = {
   getSales,
   updateStatusSales,
   getSalesBySeller,
+  getSaleDetails,
 };
