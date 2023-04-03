@@ -39,12 +39,12 @@ export default function CustomerOrderDetails() {
       },
     });
     const result = await responseFetch.json();
-    setObjSale(await result);
+    setObjSale(result);
     setArrayProducts(result.products);
     setSeller(result.seller.name);
     totalCompra(result.products);
     formatDate(result.saleDate);
-    setStatus(objSale.status);
+    setStatus(result.status);
   };
 
   const updatedStatus = async (newStatus) => {
@@ -77,7 +77,7 @@ export default function CustomerOrderDetails() {
       <p
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        { status === 'ENTREGUE' ? 'ENTREGUE' : objSale.status}
+        { status }
       </p>
       <button
         data-testid="customer_order_details__button-delivery-check"

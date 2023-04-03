@@ -62,7 +62,7 @@ function SellerOrdersDetails({ match }) {
       <p
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
-        { sale.status }
+        {status }
       </p>
       <button
         data-testid="seller_order_details__button-preparing-check"
