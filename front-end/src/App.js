@@ -10,6 +10,7 @@ import CustomerOrdersDetails from './pages/CustomerOrdersDetails';
 import CustomerOrders from './pages/CustomerOrders';
 import SellerOrders from './pages/SellerOrders';
 import SellerOrdersDetails from './pages/SellerOrdersDetails';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/login" component={ Login } />
+        <Route exact path="/admin/manage" component={ Admin } />
         <Redirect exact from="/" to="/login" />
       </Switch>
     </Provider>

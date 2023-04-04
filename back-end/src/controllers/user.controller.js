@@ -1,4 +1,5 @@
 const service = require('../services/user.service');
+const gnToken = require('../jwt/sing');
 
 const login = async (req, res, next) => {
   try {
@@ -36,4 +37,27 @@ const get = async (_req, res, next) => {
   }
 };
 
-module.exports = { login, create, getProducts, get };
+const adminRegister = async (req, res) => {
+  const { name, email, password, role } = req.body;
+    const newUser = await service.adminRegister({ name, email, password, role });
+
+    if (!newUser.created) {
+      return res.status(409).json({ message: 'User already registered' });
+    }
+    const token = gnToken(newUser.data);
+    const response = { ...newUser.data, token };
+    return res.status(201).json(response);
+};
+
+const deleteUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await service.deleteUserById(id);
+    return res.status(200).json({ message: 'User deleted' });
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
+
+module.exports = { login, create, getProducts, get, adminRegister, deleteUserById };
