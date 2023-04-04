@@ -1,0 +1,53 @@
+.details-customer-order {
+  background-color: #b1c2be;
+  margin: 30px 60px;
+}
+
+.details-customer-order button {
+  align-items: center;
+  background-color: blue;
+  display: flex;
+  justify-content: space-around;
+  width: 450px;
+}
+
+.container-customer-order {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.id-details-customer-order {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  margin: 0;
+  width: 70px;
+}
+
+.status-details-customer-order {
+  align-items: center;
+  background-color: #00cc9b;
+  border-radius: 5px;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  margin: 5px;
+  width: 130px;
+}
+
+.date-and-price-customer-order {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.date-and-price-customer-order p {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  padding: 5px;
+}

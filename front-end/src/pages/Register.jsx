@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../css/Register.css';
 
 function Register() {
   const [name, setName] = useState('');
@@ -60,9 +61,9 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h1>Cadastro</h1>
-      <form>
+      <form className="formPageRegister">
         <label htmlFor="name">
           Nome
           <input
@@ -94,6 +95,7 @@ function Register() {
           />
         </label>
         <button
+          className="buttonRegister"
           type="button"
           onClick={ handleClick }
           disabled={ isBtnDisabled }

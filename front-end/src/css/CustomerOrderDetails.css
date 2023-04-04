@@ -1,0 +1,89 @@
+.td-id-customer-order-details {
+  background-color: #2fc18c;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.td-descripition-customer-order-details {
+  background-color: #eaf1ef;
+  width: 250px;
+}
+
+.td-quantity-customer-order-details {
+  background-color: #036b52;
+  color: white;
+  text-align: center;
+}
+
+.td-unitprice-customer-order-details {
+  background-color: #421981;
+  color: white;
+  text-align: center;
+}
+
+.td-subprice-customer-order-details {
+  background-color: #056cf9;
+  color: white;
+  text-align: center;
+}
+
+.page-customer-order-details {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.details-page-customer-order-details {
+  align-items: center;
+  background-color: #b1c2be;
+  display: flex;
+  height: 30px;
+  width: 750px;
+}
+
+.details-page-customer-order-details p {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.details-page-customer-order-details button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.page-customer-order-details table {
+  margin-top: 15px;
+  width: 750px;
+}
+
+.page-customer-order-details h3 {
+  background-color: #036b52;
+  color: white;
+  padding: 5px 35px;
+  right: 5%;
+}
+
+/* .page-customer-order-details h3, h2 {
+  margin: 0 100px;
+} */
+
+.id-details-customer-order-details {
+  font-weight: 500;
+}
+
+.date-details-customer-order-details {
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.status-details-customer-order-details {
+  background-color: #00cc9b;
+  padding: 5px 15px;
+  padding-left: 25px;
+}

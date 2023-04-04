@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../css/Login.css';
 // import useLocalStorage from '../hooks/useLocalStorage';
 
 function Login() {
@@ -55,10 +56,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <img src="" alt="" />
       <h1>nome app</h1>
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={ handleSubmit } className="formPageLogin">
         <label htmlFor="email">
           Login
           <input
@@ -81,6 +82,7 @@ function Login() {
         </label>
         <button
           type="button"
+          className="buttonLogin"
           onClick={ handleClick }
           disabled={ isBtnDisabled }
           data-testid="common_login__button-login"
@@ -88,6 +90,7 @@ function Login() {
           LOGIN
         </button>
         <button
+          className="buttonNotConta"
           onClick={ () => push('/register') }
           type="button"
           data-testid="common_login__button-register"

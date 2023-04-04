@@ -1,0 +1,108 @@
+.td-id-customer-checkout {
+  background-color: #2fc18c;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.td-descripition-customer-checkout {
+  background-color: #eaf1ef;
+  width: 250px;
+}
+
+.td-quantity-customer-checkout {
+  background-color: #036b52;
+  color: white;
+  text-align: center;
+}
+
+.td-unitprice-customer-checkout {
+  background-color: #421981;
+  color: white;
+  text-align: center;
+}
+
+.td-subprice-customer-checkout {
+  background-color: #056cf9;
+  color: white;
+  text-align: center;
+}
+
+.td-remove-customer-checkout button {
+  background-color: #2fc18c;
+  border: 0;
+}
+
+.td-remove-customer-checkout {
+  background-color: #2fc18c;
+  text-align: center;
+}
+
+.page-customer-checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-customer-checkout table {
+  border: 1px solid #eaf1ef;
+  margin: 0 100px;
+  padding: 20px;
+}
+
+.page-customer-checkout h3, h2 {
+  margin: 0 100px;
+}
+
+.page-customer-checkout h3 {
+  margin-top: 20px;
+}
+
+.delivery-details {
+  margin: 0 100px;
+}
+
+.delivery-details h3 {
+  margin: 0;
+}
+
+.delivery-details label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.delivery-details input {
+  height: 25px;
+}
+
+.delivery-details select {
+  height: 30px;
+}
+
+.delivery-details button {
+  background-color: #036b52;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  height: 45px;
+  left: 530px;
+  margin-top: 20px;
+  position: absolute;
+  width: 150px;
+}
+
+.labels-delivery-details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  padding: 15px 0;
+}
+
+.input-address-customer-checkout {
+  width: 30em;
+}
+
+tfoot tr td {
+  padding-top: 20px;
+  text-align: right;
+}

@@ -1,0 +1,50 @@
+.register-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.formPageRegister {
+  align-items: center;
+  background-color: #e5e5e5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.formPageRegister input {
+  height: 20px;
+}
+
+.formPageRegister label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.formPageRegister button {
+  height: 2em;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.buttonRegister {
+  background-color: #036b52;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.buttonRegister:disabled {
+  background-color: gray;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}

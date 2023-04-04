@@ -1,0 +1,63 @@
+.list-products-customer {
+  align-items: center;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  height: 324px;
+  margin: 20px 15px;
+  position: relative;
+  width: 240px;
+}
+
+.list-products-customer img {
+  max-height: 243px;
+  max-width: 240px;
+}
+
+.main-products-customer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.price-product {
+  background-color: #eaf1ef;
+  border-radius: 10%;
+  font-size: 1.2em;
+  font-weight: 700;
+  left: 8%;
+  position: absolute;
+  top: 3%;
+}
+
+.description-products-customer {
+  align-items: center;
+  background-color: #b1c2be;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.description-products-customer input {
+  width: 40px;
+}
+
+.addCar-customer-products button {
+  background-color: #036b52;
+  border: 0;
+  border-radius: 15%;
+  height: 1.6em;
+  margin-bottom: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+.button-payment-customer-products {
+  background-color: #036b52;
+  color: white;
+  margin: 25px 0;
+  padding: 0 50px;
+}

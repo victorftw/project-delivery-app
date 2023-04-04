@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Context from '../contextAPI/context';
 import Navbar from './components/Navbar';
 import useLocalStorage from '../hooks/useLocalStorage';
+import '../css/CustomerProducts.css';
 
 function CustomerProducts() {
   const { state: user } = useLocalStorage('user', []);
@@ -81,57 +82,60 @@ function CustomerProducts() {
   return (
     <div>
       <Navbar />
-      <main>
+      <main className="main-products-customer">
         { productsArray.map((products) => (
-          <div key={ products.id }>
+          <div key={ products.id } className="list-products-customer">
             <img
               src={ products.urlImage }
               alt={ products.name }
               height="300px"
               data-testid={ `customer_products__img-card-bg-image-${products.id}` }
             />
+            <div className="description-products-customer">
 
-            <h2
-              data-testid={ `customer_products__element-card-title-${products.id}` }
-            >
-              { products.name }
-            </h2>
-
-            <p
-              data-testid={ `customer_products__element-card-price-${products.id}` }
-            >
-              { `R$ ${parseFloat(products.price)
-                .toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` }
-            </p>
-
-            <div>
-              <button
-                type="button"
-                id={ products.id }
-                data-testid={ `customer_products__button-card-rm-item-${products.id}` }
-                onClick={ (e) => subtractItem(e.target.id) }
+              <p
+                data-testid={ `customer_products__element-card-title-${products.id}` }
               >
-                -
-              </button>
+                { products.name }
+              </p>
 
-              <input
-                type="number"
-                data-testid={ `customer_products__input-card-quantity-${products.id}` }
-                placeholder="0"
-                id={ products.id }
-                value={ products.quantity }
-                min={ 0 }
-                onChange={ (e) => handleChange(e) }
-              />
-
-              <button
-                type="button"
-                onClick={ (e) => addItem(e.target.id) }
-                id={ products.id }
-                data-testid={ `customer_products__button-card-add-item-${products.id}` }
+              <p
+                className="price-product"
+                data-testid={ `customer_products__element-card-price-${products.id}` }
               >
-                +
-              </button>
+                { `R$ ${parseFloat(products.price)
+                  .toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` }
+              </p>
+
+              <div className="addCar-customer-products">
+                <button
+                  type="button"
+                  id={ products.id }
+                  data-testid={ `customer_products__button-card-rm-item-${products.id}` }
+                  onClick={ (e) => subtractItem(e.target.id) }
+                >
+                  -
+                </button>
+
+                <input
+                  type="number"
+                  data-testid={ `customer_products__input-card-quantity-${products.id}` }
+                  placeholder="0"
+                  id={ products.id }
+                  value={ products.quantity }
+                  min={ 0 }
+                  onChange={ (e) => handleChange(e) }
+                />
+
+                <button
+                  type="button"
+                  onClick={ (e) => addItem(e.target.id) }
+                  id={ products.id }
+                  data-testid={ `customer_products__button-card-add-item-${products.id}` }
+                >
+                  +
+                </button>
+              </div>
 
             </div>
           </div>
@@ -139,6 +143,7 @@ function CustomerProducts() {
       </main>
       <footer>
         <button
+          className="button-payment-customer-products"
           type="button"
           data-testid="customer_products__button-cart"
           disabled={ !disableButtton() }

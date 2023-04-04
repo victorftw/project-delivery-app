@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import '../css/CustomerOrderDetails.css';
 
 export default function CustomerOrderDetails() {
   const [status, setStatus] = useState('');
@@ -40,11 +41,11 @@ export default function CustomerOrderDetails() {
     });
     const result = await responseFetch.json();
     setObjSale(await result);
-    setArrayProducts(result.products);
-    setSeller(result.seller.name);
-    totalCompra(result.products);
-    formatDate(result.saleDate);
-    setStatus(objSale.status);
+    setArrayProducts(await result.products);
+    setSeller(await result.seller.name);
+    totalCompra(await result.products);
+    formatDate(await result.saleDate);
+    setStatus(await result.status);
   };
 
   const updatedStatus = async (newStatus) => {
@@ -65,29 +66,46 @@ export default function CustomerOrderDetails() {
     <div>
       <Navbar />
       <h2>Detalhe do Pedido</h2>
-      <p data-testid="customer_order_details__element-order-details-label-order-id">
-        {`PEDIDO ${objSale.id};`}
-      </p>
-      <p data-testid="customer_order_details__element-order-details-label-seller-name">
-        {`P.Vend: ${seller}`}
-      </p>
-      <p data-testid="customer_order_details__element-order-details-label-order-date">
-        {date}
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-delivery-status"
-      >
-        { status === 'ENTREGUE' ? 'ENTREGUE' : objSale.status}
-      </p>
-      <button
-        data-testid="customer_order_details__button-delivery-check"
-        type="button"
-        disabled={ status !== 'Em Trânsito' }
-        onClick={ () => updatedStatus('Entregue') }
-      >
-        Marcar como Entregue
-      </button>
-      <div>
+      <div className="page-customer-order-details">
+        <div className="details-page-customer-order-details">
+          <p
+            className="id-details-customer-order-details"
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            {`PEDIDO ${objSale.id}`}
+          </p>
+          <p
+            className="seller-name-details-customer-order-details"
+            data-testid={ `
+            customer_order_details__element-order-details-label-seller-name
+            ` }
+          >
+            {`P.Vend: ${seller}`}
+          </p>
+          <p
+            className="date-details-customer-order-details"
+            data-testid="customer_order_details__element-order-details-label-order-date"
+          >
+            {date}
+          </p>
+          <p
+            className="status-details-customer-order-details"
+            data-testid={ `
+          customer_order_details__element-order-details-label-delivery-status
+          ` }
+          >
+            { status }
+          </p>
+          <button
+            data-testid="customer_order_details__button-delivery-check"
+            type="button"
+            disabled={ objSale.status !== 'Em Trânsito' }
+            onClick={ () => updatedStatus('Entregue') }
+          >
+            Marcar como Entregue
+          </button>
+        </div>
+
         <table>
           <tr>
             <th>Item</th>
@@ -100,6 +118,7 @@ export default function CustomerOrderDetails() {
             { arrayProducts.map((element, index) => (
               <tr key={ index }>
                 <td
+                  className="td-id-customer-order-details"
                   data-testid={
                     `customer_order_details__element-order-table-item-number-${index}`
                   }
@@ -107,6 +126,7 @@ export default function CustomerOrderDetails() {
                   {element.id}
                 </td>
                 <td
+                  className="td-descripition-customer-order-details"
                   data-testid={
                     `customer_order_details__element-order-table-name-${index}`
                   }
@@ -114,6 +134,7 @@ export default function CustomerOrderDetails() {
                   {element.name}
                 </td>
                 <td
+                  className="td-quantity-customer-order-details"
                   data-testid={
                     `customer_order_details__element-order-table-quantity-${index}`
                   }
@@ -122,6 +143,7 @@ export default function CustomerOrderDetails() {
 
                 </td>
                 <td
+                  className="td-unitprice-customer-order-details"
                   data-testid={
                     `customer_order_details__element-order-table-unit-price-${index}`
                   }
@@ -129,6 +151,7 @@ export default function CustomerOrderDetails() {
                   {element.price}
                 </td>
                 <td
+                  className="td-subprice-customer-order-details"
                   data-testid={
                     `customer_order_details__element-order-table-sub-total-${index}`
                   }
