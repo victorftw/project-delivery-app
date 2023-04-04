@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [productsArray, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [totalValue, setTotalValue] = useState(0);
+  const [newUserRegisterByAdmin, setNewUserRegisterByAdmin] = useState(false);
 
   const contextValue = useMemo(() => {
     const objState = {
@@ -15,6 +16,8 @@ function Provider({ children }) {
       setProducts,
       setCartProducts,
       setTotalValue,
+      newUserRegisterByAdmin,
+      setNewUserRegisterByAdmin,
     };
     return objState;
   }, [
@@ -24,6 +27,8 @@ function Provider({ children }) {
     setProducts,
     setCartProducts,
     setTotalValue,
+    newUserRegisterByAdmin,
+    setNewUserRegisterByAdmin,
   ]);
 
   return (
