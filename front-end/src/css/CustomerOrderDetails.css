@@ -1,3 +1,8 @@
+h2 {
+  margin: 25px auto;
+  text-align: center;
+}
+
 .td-id-customer-order-details {
   background-color: #2fc18c;
   border-radius: 5px;
@@ -66,9 +71,6 @@
   right: 5%;
 }
 
-/* .page-customer-order-details h3, h2 {
-  margin: 0 100px;
-} */
 
 .id-details-customer-order-details {
   font-weight: 500;

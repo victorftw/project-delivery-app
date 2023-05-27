@@ -27,7 +27,7 @@ function SellerOrdersDetails({ match }) {
       setProducts(result[1]);
     };
     getInfo();
-  }, []);
+  }, [id]);
 
   const formatDate = (newData) => {
     const data = new Date(newData);

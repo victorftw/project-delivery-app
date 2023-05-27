@@ -1,3 +1,7 @@
+.centered-input {
+  text-align: center;
+}
+
 .list-products-customer {
   align-items: center;
   border: 1px solid gray;
@@ -50,14 +54,26 @@
   margin-bottom: 10px;
 }
 
-footer {
-  display: flex;
-  justify-content: center;
-}
-
 .button-payment-customer-products {
   background-color: #036b52;
   color: white;
   margin: 25px 0;
   padding: 0 50px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

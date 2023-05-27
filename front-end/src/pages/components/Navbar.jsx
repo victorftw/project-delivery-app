@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import '../../css/Navbar.css';
 
 export default function Navbar() {
   const { state: user } = useLocalStorage('user', {});
+  const [display, setDisplay] = useState('');
   const history = useHistory();
   const { pathname } = window.location;
   const lastIndex = pathname.lastIndexOf('/');
@@ -13,12 +14,20 @@ export default function Navbar() {
   const result = pathname.substring(lastIndex + 1);
   if (result === 'products') classProducts = 'buttonProductsNavbar select';
   if (result !== 'products') classPedidos = 'buttonPedidosNavbar select';
+
+  useEffect(() => {
+    if (user.role === 'seller') {
+      setDisplay('None');
+    }
+  }, [user.role]);
+
   return (
     <header className="container-nav">
       <div className="nav-products">
         <button
           className={ classProducts }
           type="button"
+          style={ { display } }
           onClick={ () => history.push('/customer/products') }
           data-testid="customer_products__element-navbar-link-products"
         >
@@ -33,7 +42,9 @@ export default function Navbar() {
             if (user.role === 'seller') history.push('/seller/orders');
           } }
         >
-          Meus Pedidos
+          {
+            user.role === 'seller' ? 'Pedidos' : 'Meus Pedidos'
+          }
         </button>
       </div>
       <div style={ { backgroundColor: '#036b52', width: '100%' } } />

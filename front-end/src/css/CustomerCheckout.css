@@ -49,12 +49,8 @@
   padding: 20px;
 }
 
-.page-customer-checkout h3, h2 {
-  margin: 0 100px;
-}
-
-.page-customer-checkout h3 {
-  margin-top: 20px;
+.page-customer-checkout > h3 {
+  margin: 20px auto;
 }
 
 .delivery-details {
@@ -62,7 +58,8 @@
 }
 
 .delivery-details h3 {
-  margin: 0;
+  margin: 30px auto;
+  text-align: center;
 }
 
 .delivery-details label {
@@ -85,10 +82,11 @@
   color: white;
   cursor: pointer;
   height: 45px;
-  left: 530px;
-  margin-top: 20px;
-  position: absolute;
   width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
 }
 
 .labels-delivery-details {

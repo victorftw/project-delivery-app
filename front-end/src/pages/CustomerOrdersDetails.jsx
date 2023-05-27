@@ -31,23 +31,6 @@ export default function CustomerOrderDetails() {
     return soma;
   };
 
-  const startPage = async () => {
-    const responseFetch = await fetch(`http://localhost:3001/customer/orders/${id}`, {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const result = await responseFetch.json();
-    setObjSale(await result);
-    setArrayProducts(await result.products);
-    setSeller(await result.seller.name);
-    totalCompra(await result.products);
-    formatDate(await result.saleDate);
-    setStatus(await result.status);
-  };
-
   const updatedStatus = async (newStatus) => {
     await fetch(`http://localhost:3001/customer/orders/${newStatus}/${id}`, {
       method: 'PATCH',
@@ -58,14 +41,31 @@ export default function CustomerOrderDetails() {
     });
     setStatus(newStatus);
   };
+
   useEffect(() => {
+    const startPage = async () => {
+      const responseFetch = await fetch(`http://localhost:3001/customer/orders/${id}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await responseFetch.json();
+      setObjSale(await result);
+      setArrayProducts(await result.products);
+      setSeller(await result.seller.name);
+      totalCompra(await result.products);
+      formatDate(await result.saleDate);
+      setStatus(await result.status);
+    };
     startPage();
-  }, []);
+  }, [id]);
 
   return (
     <div>
       <Navbar />
-      <h2>Detalhe do Pedido</h2>
+      <h2>Detalhes do Pedido</h2>
       <div className="page-customer-order-details">
         <div className="details-page-customer-order-details">
           <p
@@ -166,7 +166,6 @@ export default function CustomerOrderDetails() {
           data-testid="customer_order_details__element-order-total-price"
         >
           {totalValue.toFixed(2).replace('.', ',')}
-
         </h3>
       </div>
     </div>

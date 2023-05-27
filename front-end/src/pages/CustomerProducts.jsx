@@ -15,7 +15,7 @@ function CustomerProducts() {
 
   useEffect(() => {
     setTotalValue(totalPrice.reduce((acc, current) => acc + current, 0).toFixed(2));
-  }, [totalPrice]);
+  }, [totalPrice, setTotalValue]);
 
   useEffect(() => {
     const { token } = user;
@@ -36,7 +36,7 @@ function CustomerProducts() {
       setProducts(products);
     };
     fetchProducts();
-  }, [setProducts]);
+  }, [setProducts, user]);
 
   useEffect(() => {
     const cartProductsToAlter = productsArray
@@ -119,6 +119,7 @@ function CustomerProducts() {
 
                 <input
                   type="number"
+                  className="centered-input"
                   data-testid={ `customer_products__input-card-quantity-${products.id}` }
                   placeholder="0"
                   id={ products.id }

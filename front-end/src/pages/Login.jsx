@@ -10,21 +10,24 @@ function Login() {
   const [isUserNotFound, setIsUserNotFound] = useState(false);
   const { push } = useHistory();
 
-  const redirect = (us) => {
-    if (us.role === 'customer') push('/customer/products');
-    if (us.role === 'seller') push('/seller/orders');
-  };
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const redirect = (us) => {
+      if (us.role === 'customer') push('/customer/products');
+      if (us.role === 'seller') push('/seller/orders');
+    };
+
     if (user?.email) {
       redirect(user);
     }
+
     const seis = 6;
     const regex = /\S+[@]\w+[.]\w+/gi;
+
     if (regex.test(email) && password.length >= seis) setIsBtnDisabled(false);
     else setIsBtnDisabled(true);
   }, [email, password, push]);
+
   const handleClick = async () => {
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -36,10 +39,12 @@ function Login() {
     });
 
     const result = await response.json();
+
     if (result.message === 'User not found') {
       setIsUserNotFound(true);
       return;
     }
+
     localStorage.setItem('user', JSON.stringify({
       name: result.name,
       email: result.email,
@@ -58,7 +63,7 @@ function Login() {
   return (
     <div className="login-container">
       <img src="" alt="" />
-      <h1>nome app</h1>
+      <h1>Delivery App</h1>
       <form onSubmit={ handleSubmit } className="formPageLogin">
         <label htmlFor="email">
           Login
