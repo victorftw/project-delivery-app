@@ -52,36 +52,39 @@ function SellerOrdersDetails({ match }) {
   return (
     <div>
       <Navbar />
-      <h2>Detalhe do Pedido</h2>
-      <p data-testid="seller_order_details__element-order-details-label-order-id">
-        {`PEDIDO ${sale.id};`}
-      </p>
-      <p data-testid="seller_order_details__element-order-details-label-order-date">
-        {formatDate(sale.saleDate)}
-      </p>
-      <p
-        data-testid="seller_order_details__element-order-details-label-delivery-status"
-      >
-        { sale.status }
-      </p>
-      <button
-        data-testid="seller_order_details__button-preparing-check"
-        type="button"
-        disabled={ status !== 'Pendente' }
-        onClick={ () => updatedStatus('Preparando') }
-      >
-        Preparar Pedido
-      </button>
-      <button
-        data-testid="seller_order_details__button-dispatch-check"
-        type="button"
-        disabled={ status !== 'Preparando' }
-        onClick={ () => updatedStatus('Em Trânsito') }
-      >
-        Saiu para entrega
-      </button>
-      <table>
-        <thead>
+      <h2>Detalhes do Pedido</h2>
+      <div className="page-seller-order-details">
+        <div className="details-page-seller-order-details">
+          <p data-testid="seller_order_details__element-order-details-label-order-id">
+            {`PEDIDO ${sale.id};`}
+          </p>
+          <p data-testid="seller_order_details__element-order-details-label-order-date">
+            {formatDate(sale.saleDate)}
+          </p>
+          <p
+            data-testid={ `
+            seller_order_details__element-order-details-label-delivery-status` }
+          >
+            { sale.status }
+          </p>
+          <button
+            data-testid="seller_order_details__button-preparing-check"
+            type="button"
+            disabled={ status !== 'Pendente' }
+            onClick={ () => updatedStatus('Preparando') }
+          >
+            Preparar Pedido
+          </button>
+          <button
+            data-testid="seller_order_details__button-dispatch-check"
+            type="button"
+            disabled={ status !== 'Preparando' }
+            onClick={ () => updatedStatus('Em Trânsito') }
+          >
+            Saiu para entrega
+          </button>
+        </div>
+        <table>
           <tr>
             <th>Item</th>
             <th>Descrição</th>
@@ -89,56 +92,56 @@ function SellerOrdersDetails({ match }) {
             <th>Valor Unitário</th>
             <th>Sub-Total</th>
           </tr>
-        </thead>
-        <tbody>
-          { products.map((e, index) => (
-            <tr key={ index }>
-              <td
-                data-testid={
-                  `seller_order_details__element-order-table-item-number-${index}`
-                }
-              >
-                {e.id}
-              </td>
-              <td
-                data-testid={
-                  `seller_order_details__element-order-table-name-${index}`
-                }
-              >
-                {e.name}
-              </td>
-              <td
-                data-testid={
-                  `seller_order_details__element-order-table-quantity-${index}`
-                }
-              >
-                {e.quantity}
+          <tbody>
+            { products.map((e, index) => (
+              <tr key={ index }>
+                <td
+                  data-testid={
+                    `seller_order_details__element-order-table-item-number-${index}`
+                  }
+                >
+                  {e.id}
+                </td>
+                <td
+                  data-testid={
+                    `seller_order_details__element-order-table-name-${index}`
+                  }
+                >
+                  {e.name}
+                </td>
+                <td
+                  data-testid={
+                    `seller_order_details__element-order-table-quantity-${index}`
+                  }
+                >
+                  {e.quantity}
 
-              </td>
-              <td
-                data-testid={
-                  `seller_order_details__element-order-table-unit-price-${index}`
-                }
-              >
-                {e.price}
-              </td>
-              <td
-                data-testid={
-                  `seller_order_details__element-order-table-sub-total-${index}`
-                }
-              >
-                {(e.quantity * e.price).toFixed(2)}
-              </td>
-            </tr>
-          )) }
-        </tbody>
-      </table>
-      <h3
-        data-testid="seller_order_details__element-order-total-price"
-      >
-        {Number(sale.totalPrice).toFixed(2).replace('.', ',')}
+                </td>
+                <td
+                  data-testid={
+                    `seller_order_details__element-order-table-unit-price-${index}`
+                  }
+                >
+                  {e.price}
+                </td>
+                <td
+                  data-testid={
+                    `seller_order_details__element-order-table-sub-total-${index}`
+                  }
+                >
+                  {(e.quantity * e.price).toFixed(2)}
+                </td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
+        <h3
+          data-testid="seller_order_details__element-order-total-price"
+        >
+          {Number(sale.totalPrice).toFixed(2).replace('.', ',')}
 
-      </h3>
+        </h3>
+      </div>
     </div>
   );
 }
