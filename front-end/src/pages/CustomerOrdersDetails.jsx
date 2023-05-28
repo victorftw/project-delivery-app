@@ -105,7 +105,6 @@ export default function CustomerOrderDetails() {
             Marcar como Entregue
           </button>
         </div>
-
         <table>
           <tr>
             <th>Item</th>

@@ -1,0 +1,91 @@
+h2 {
+  margin: 25px auto;
+  text-align: center;
+}
+
+.td-id-seller-order-details {
+  background-color: #2fc18c;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.td-descripition-seller-order-details {
+  background-color: #eaf1ef;
+  width: 250px;
+}
+
+.td-quantity-seller-order-details {
+  background-color: #036b52;
+  color: white;
+  text-align: center;
+}
+
+.td-unitprice-seller-order-details {
+  background-color: #421981;
+  color: white;
+  text-align: center;
+}
+
+.td-subprice-seller-order-details {
+  background-color: #056cf9;
+  color: white;
+  text-align: center;
+}
+
+.page-seller-order-details {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.details-page-seller-order-details {
+  align-items: center;
+  background-color: #b1c2be;
+  display: flex;
+  height: 30px;
+  width: 750px;
+}
+
+.details-page-seller-order-details p {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.details-page-seller-order-details button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.page-seller-order-details table {
+  margin-top: 15px;
+  width: 750px;
+}
+
+.page-seller-order-details h3 {
+  background-color: #036b52;
+  color: white;
+  padding: 5px 35px;
+  right: 5%;
+}
+
+
+.id-details-seller-order-details {
+  font-weight: 500;
+}
+
+.date-details-seller-order-details {
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.status-details-seller-order-details {
+  background-color: #00cc9b;
+  padding: 5px 15px;
+  padding-left: 25px;
+}

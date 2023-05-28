@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import proptypes from 'prop-types';
 import Navbar from './components/Navbar';
+import '../css/SellerOrderDetails.css';
 
 function SellerOrdersDetails({ match }) {
   // const [seller] = useState(() => JSON.parse(localStorage.getItem('user')) || {});
@@ -55,13 +56,20 @@ function SellerOrdersDetails({ match }) {
       <h2>Detalhes do Pedido</h2>
       <div className="page-seller-order-details">
         <div className="details-page-seller-order-details">
-          <p data-testid="seller_order_details__element-order-details-label-order-id">
-            {`PEDIDO ${sale.id};`}
+          <p
+            className="id-details-seller-order-details"
+            data-testid="seller_order_details__element-order-details-label-order-id"
+          >
+            {`PEDIDO ${sale.id}`}
           </p>
-          <p data-testid="seller_order_details__element-order-details-label-order-date">
+          <p
+            className="date-details-seller-order-details"
+            data-testid="seller_order_details__element-order-details-label-order-date"
+          >
             {formatDate(sale.saleDate)}
           </p>
           <p
+            className="status-details-seller-order-details"
             data-testid={ `
             seller_order_details__element-order-details-label-delivery-status` }
           >
@@ -96,6 +104,7 @@ function SellerOrdersDetails({ match }) {
             { products.map((e, index) => (
               <tr key={ index }>
                 <td
+                  className="td-id-seller-order-details"
                   data-testid={
                     `seller_order_details__element-order-table-item-number-${index}`
                   }
@@ -103,6 +112,7 @@ function SellerOrdersDetails({ match }) {
                   {e.id}
                 </td>
                 <td
+                  className="td-descripition-seller-order-details"
                   data-testid={
                     `seller_order_details__element-order-table-name-${index}`
                   }
@@ -110,14 +120,15 @@ function SellerOrdersDetails({ match }) {
                   {e.name}
                 </td>
                 <td
+                  className="td-quantity-seller-order-details"
                   data-testid={
                     `seller_order_details__element-order-table-quantity-${index}`
                   }
                 >
                   {e.quantity}
-
                 </td>
                 <td
+                  className="td-unitprice-seller-order-details"
                   data-testid={
                     `seller_order_details__element-order-table-unit-price-${index}`
                   }
@@ -125,6 +136,7 @@ function SellerOrdersDetails({ match }) {
                   {e.price}
                 </td>
                 <td
+                  className="td-subprice-seller-order-details"
                   data-testid={
                     `seller_order_details__element-order-table-sub-total-${index}`
                   }
