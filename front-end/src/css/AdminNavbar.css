@@ -1,0 +1,48 @@
+header {
+  display: flex;
+  height: 55px;
+  justify-content: space-between;
+}
+
+.nav-admin {
+  display: flex;
+}
+
+.buttonAdminNavbar {
+  background-color: #036b52;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  height: 55px;
+  width: 250px;
+}
+
+.select {
+  background-color: #2fc18c;
+  color: black;
+  font-weight: 700;
+}
+
+.nav-user {
+  display: flex;
+}
+
+.nav-user button {
+  background-color: #056cf9;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  height: 55px;
+  width: 152px;
+}
+
+.nav-user div {
+  align-items: center;
+  background-color: #421981;
+  border: 0;
+  color: white;
+  display: flex;
+  float: left;
+  justify-content: center;
+  width: 250px;
+}
