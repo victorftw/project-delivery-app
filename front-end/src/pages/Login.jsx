@@ -15,6 +15,7 @@ function Login() {
     const redirect = (us) => {
       if (us.role === 'customer') push('/customer/products');
       if (us.role === 'seller') push('/seller/orders');
+      if (us.role === 'administrator') push('/admin/manage');
     };
 
     if (user?.email) {
@@ -53,6 +54,7 @@ function Login() {
     }));
 
     if (result.role === 'seller') push('/seller/orders');
+    else if (result.role === 'administrator') push('/admin/manage');
     else push('/customer/products');
   };
 

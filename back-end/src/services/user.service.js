@@ -53,4 +53,30 @@ const get = async () => {
   return resp(200, users);
 };
 
-module.exports = { login, create, getProducts, get };
+const adminRegister = async (body) => {
+  const { name, email, password, role } = body;
+
+    const [newUser, created] = await User.findOrCreate({
+      where: { email },
+      defaults: {
+        name,
+        email,
+        password: md5(password),
+        role,
+      },
+    });
+  
+    const { password: _, ...newUserWithoutPassword } = newUser.dataValues;
+  
+    return { data: newUserWithoutPassword, created };
+};
+
+const deleteUserById = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error('User not found');
+  }
+  await user.destroy();
+};
+
+module.exports = { login, create, getProducts, get, adminRegister, deleteUserById };
