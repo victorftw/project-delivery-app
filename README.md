@@ -50,12 +50,12 @@ Fluxo da Pessoa Vendedora:
   <summary><strong>Tecnologias utilizadas</strong></summary>
   
 - `Node.js`
+- `Express`
 - `React`
 - `Context API`
 - `Sequelize`
-- `Arquitetura MSC`
-- `Express`
 - `MySql`
+- `Arquitetura MSC`
 
 </details>
 
