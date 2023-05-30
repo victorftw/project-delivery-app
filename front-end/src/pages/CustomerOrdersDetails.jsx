@@ -98,6 +98,8 @@ export default function CustomerOrderDetails() {
           </p>
           <button
             data-testid="customer_order_details__button-delivery-check"
+            id="button-delivery-check"
+            style={ { border: 'none' } }
             type="button"
             disabled={ objSale.status !== 'Em Trânsito' }
             onClick={ () => updatedStatus('Entregue') }

@@ -67,7 +67,7 @@ function Users() {
     >
       <div>
         <h3>Lista de usuários</h3>
-        <table>
+        <table className="table-users">
           <thead>
             <tr>
               {resolveError && (
@@ -88,33 +88,41 @@ function Users() {
                 key={ index + 1 }
               >
                 <td
+                  className="table-id"
                   data-testid={ `admin_manage__element-user-table-item-number-${index}` }
                 >
                   { index + 1 }
                 </td>
                 <td
+                  className="table-name"
                   data-testid={ `admin_manage__element-user-table-name-${index}` }
                 >
                   { user.name }
                 </td>
                 <td
+                  className="table-email"
                   data-testid={ `admin_manage__element-user-table-email-${index}` }
                 >
                   { user.email }
                 </td>
                 <td
+                  className="table-role"
                   data-testid={ `admin_manage__element-user-table-role-${index}` }
                 >
                   { user.role }
                 </td>
                 <td
+                  className="table-remove"
                   data-testid={ `admin_manage__element-user-table-remove-${index}` }
                 >
                   <button
+                    style={ { backgroundColor: 'transparent',
+                      border: 'none',
+                      color: 'white' } }
                     type="button"
                     onClick={ () => handleDeleteUser(user.id) }
                   >
-                    Remover
+                    Excluir
                   </button>
                 </td>
               </tr>

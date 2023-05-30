@@ -1,0 +1,56 @@
+.container {
+  width: 75%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-register {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.form-register input, .form-register select {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.form-register button {
+  font-size: 16px;
+  padding: 3px;
+  border-radius: 5px;
+  color: white;
+  background: #036B52;
+}
+
+.table-users {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.table-id {
+  color: #001813;
+  background-color: #2FC18C;
+}
+
+.table-name {
+  color: #001813;
+  background-color: #EAF1EF;
+}
+
+.table-email {
+  color: white;
+  background-color: #036B52;
+}
+
+.table-role {
+  color: white;
+  background-color: #421981;
+}
+
+.table-remove {
+  background-color: #056CF9;
+}
